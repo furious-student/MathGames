@@ -1,7 +1,10 @@
-package sk.stuba.fiit;
+package sk.stuba.fiit.math.exercises.matrix;
+
+import sk.stuba.fiit.math.RandomNumber;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Objects;
 
 public class Matrix {
     private final int MAX_LIMIT = 100;
@@ -177,12 +180,9 @@ public class Matrix {
 
         int element = 0;
         for (int i = 0; i < this.sizeM; i++) {
-            for (int j = 0; j < this.sizeM; j++) {
+            for (int j = 0; j < matrix.sizeN; j++) {
                 for (int k = 0; k < this.sizeN; k++) {
                     element += this.body.get(i).get(k) * matrix.getBody().get(k).get(j);
-                    if (i >= matrix.sizeM) {
-                        break;
-                    }
                 }
                 productMatrix.getBody().get(i).set(j, element);
                 element = 0;
@@ -190,4 +190,25 @@ public class Matrix {
         }
         return productMatrix;
     }
+
+    // ============================== OVERRIDDEN METHODS  ======================================
+
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) {return true;}
+        if (o == null || this.getClass() != o.getClass()) {return false;}
+        Matrix matrix = (Matrix) o;
+        if (this.sizeM != matrix.sizeM || this.sizeN != matrix.sizeN) {return false;}
+
+        for (int i = 0; i < this.sizeM; i++) {
+            for (int j = 0; j < this.sizeN; j++) {
+                if (!Objects.equals(this.body.get(i).get(j), matrix.getBody().get(i).get(j))) {
+                    return false;
+                }
+            }
+        }
+
+        return true;
+    }
+
 }

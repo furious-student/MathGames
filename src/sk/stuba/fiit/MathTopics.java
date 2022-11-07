@@ -1,4 +1,4 @@
 package sk.stuba.fiit;
 
-public class Equation {
+public class MathTopics {
 }

@@ -1,4 +1,4 @@
-package sk.stuba.fiit;
+package sk.stuba.fiit.math;
 
 import java.text.DecimalFormat;
 
