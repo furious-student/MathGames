@@ -1,7 +1,11 @@
 package sk.stuba.fiit;
 
 import sk.stuba.fiit.math.exercises.Exercise;
+import sk.stuba.fiit.math.exercises.equation.EquationExercise;
+import sk.stuba.fiit.math.exercises.equation.LinearEquation;
 import sk.stuba.fiit.math.exercises.matrix.MatrixExercise;
+
+import java.util.Scanner;
 
 public class TestMain {
     public static void main(String[] args) {
@@ -66,6 +70,11 @@ public class TestMain {
 
         Exercise exercise = new MatrixExercise();
         exercise.generateExercise();
+
+        System.out.println();
+
+        Exercise equation = new EquationExercise();
+        equation.generateExercise();
 
     }
 

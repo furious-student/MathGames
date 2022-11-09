@@ -35,12 +35,12 @@ public class MatrixExercise extends Exercise {
         this.a.print();
         System.out.println("and matrix B =");
         this.b.print();
-        System.out.println("Find the sum of these matrices (enter each row, numbers separated by space: ");
+        System.out.println("Find the sum of these matrices (enter each row, numbers separated by space): ");
         this.userMatrix = getUserMatrix();
 
         this.c = this.a.add(this.b);
 
-        if (checkMatrixSolution()) {
+        if (isMatrixSolutionCorrect()) {
             super.printKudos();
         } else {
             super.printError();
@@ -69,7 +69,7 @@ public class MatrixExercise extends Exercise {
 
         this.c = this.a.multiply(this.b);
 
-        if (checkMatrixSolution()) {
+        if (isMatrixSolutionCorrect()) {
             super.printKudos();
         } else {
             super.printError();
@@ -80,7 +80,7 @@ public class MatrixExercise extends Exercise {
         }
     }
 
-    private boolean checkMatrixSolution() {
+    private boolean isMatrixSolutionCorrect() {
         return this.userMatrix.equals(this.c);
     }
 

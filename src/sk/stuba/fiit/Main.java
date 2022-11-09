@@ -31,23 +31,13 @@ public class Main {
                         game.initialize();
                         option = getUserNumberInput();
                         switch (option) {
-                            case 0:
-                                gameMode = null;
-                                break;
-                            case 1:
-                                gameMode = "QuickMathSolver";
-                                break;
-                            case 2:
-                                gameMode = "TheTrueSolver";
-                                break;
-                            case 3:
-                                gameMode = "LordOfMath";
-                                break;
-                            case 4:
-                                game.help();
-                                break;
-                            default:
-                                System.out.println("Option \"" + option + "\" is not recognized as a valid option");
+                            case 0 -> gameMode = null;
+                            case 1 -> gameMode = "QuickMathSolver";
+                            case 2 -> gameMode = "TheTrueSolver";
+                            case 3 -> gameMode = "LordOfMath";
+                            case 4 -> game.help();
+                            default ->
+                                    System.out.println("Option \"" + option + "\" is not recognized as a valid option");
                         }
                         if (gameMode != null) {
                             game.switchModes(gameMode);
