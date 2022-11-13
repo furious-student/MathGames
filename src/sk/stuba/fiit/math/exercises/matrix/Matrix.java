@@ -11,7 +11,7 @@ public class Matrix {
     private final int MIN_LIMIT = -100;
     private int sizeM;
     private int sizeN;
-    public List<List<Integer>> body;
+    private List<List<Integer>> body;
 
     public Matrix(int sizeM, int sizeN) {
         this.sizeM = sizeM;

@@ -18,6 +18,9 @@ public abstract class GameMode {
         this.time = 0;
     }
 
+    public abstract void printGameModeMenu();
+    public abstract void play(ArrayList<Integer> typeOfExercises);
+
     public double getPoints() {
         return points;
     }
@@ -104,6 +107,5 @@ public abstract class GameMode {
         return this.name.equals(gameMode.getName());
     }
 
-    public abstract void printGameModeMenu();
-    public abstract void play(ArrayList<Integer> typeOfExercises);
+
 }

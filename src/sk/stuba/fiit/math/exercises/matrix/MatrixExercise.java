@@ -8,10 +8,10 @@ import java.util.List;
 import java.util.Scanner;
 
 public class MatrixExercise extends Exercise {
-    Matrix a;
-    Matrix b;
-    Matrix c;
-    Matrix userMatrix;
+    private Matrix a;
+    private Matrix b;
+    private Matrix c;
+    private Matrix userMatrix;
     // ============================= MATRICES =============================
     @Override
     public void generateExercise() {
