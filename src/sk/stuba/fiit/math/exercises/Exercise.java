@@ -10,13 +10,15 @@ public abstract class Exercise {
 
 
     // ============================= UTILITY PRINT FUNCTIONS =============================
-    public void printKudos() {
+    public final void printKudos() {
         System.out.println("Kudos! Your solution is correct.");
     }
 
-    public void printError() {
+    public final void printError() {
         System.out.println("Better luck next time! your solution was incorrect.");
     }
 
     public abstract void generateExercise();
+    public abstract boolean isSolutionCorrect();
+    public abstract void getUserSolution();
 }

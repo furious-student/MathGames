@@ -1,8 +1,13 @@
 package sk.stuba.fiit;
 
+import sk.stuba.fiit.math.RandomNumber;
 import sk.stuba.fiit.math.exercises.Exercise;
+import sk.stuba.fiit.math.exercises.algebraAndArithmetics.Algebra;
+import sk.stuba.fiit.math.exercises.algebraAndArithmetics.AlgebraicExercise;
+import sk.stuba.fiit.math.exercises.algebraAndArithmetics.ArithmeticExercise;
 import sk.stuba.fiit.math.exercises.equation.EquationExercise;
 import sk.stuba.fiit.math.exercises.equation.LinearEquation;
+import sk.stuba.fiit.math.exercises.equation.QuadraticEquation;
 import sk.stuba.fiit.math.exercises.matrix.MatrixExercise;
 
 import java.util.Scanner;
@@ -67,7 +72,6 @@ public class TestMain {
         a.multiply(b).print();
         */
 
-
         Exercise exercise = new MatrixExercise();
         exercise.generateExercise();
 
@@ -76,6 +80,15 @@ public class TestMain {
         Exercise equation = new EquationExercise();
         equation.generateExercise();
 
+        System.out.println();
+
+        Exercise algebra = new AlgebraicExercise();
+        algebra.generateExercise();
+
+        System.out.println();
+
+        Exercise arithmetics = new ArithmeticExercise();
+        arithmetics.generateExercise();
     }
 
 }

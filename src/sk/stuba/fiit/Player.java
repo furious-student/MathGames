@@ -11,6 +11,10 @@ public class Player {
         this.highScoreMode = null;
     }
 
+    public Player() {
+        this("Guest007");
+    }
+
     public String getNickName() {
         return nickName;
     }

@@ -36,11 +36,11 @@ public class MatrixExercise extends Exercise {
         System.out.println("and matrix B =");
         this.b.print();
         System.out.println("Find the sum of these matrices (enter each row, numbers separated by space): ");
-        this.userMatrix = getUserMatrix();
+        getUserSolution();
 
         this.c = this.a.add(this.b);
 
-        if (isMatrixSolutionCorrect()) {
+        if (isSolutionCorrect()) {
             super.printKudos();
         } else {
             super.printError();
@@ -65,11 +65,11 @@ public class MatrixExercise extends Exercise {
         System.out.println("and matrix B =");
         this.b.print();
         System.out.println("Find the product of these matrices (enter each row, numbers separated by space: ");
-        this.userMatrix = getUserMatrix();
+        getUserSolution();
 
         this.c = this.a.multiply(this.b);
 
-        if (isMatrixSolutionCorrect()) {
+        if (isSolutionCorrect()) {
             super.printKudos();
         } else {
             super.printError();
@@ -80,11 +80,13 @@ public class MatrixExercise extends Exercise {
         }
     }
 
-    private boolean isMatrixSolutionCorrect() {
+    @Override
+    public boolean isSolutionCorrect() {
         return this.userMatrix.equals(this.c);
     }
 
-    private Matrix getUserMatrix() {
+    @Override
+    public void getUserSolution() {
         List<List<Integer>> body = new ArrayList<>();
         Scanner scanner = new Scanner(System.in);
         String number;
@@ -106,8 +108,7 @@ public class MatrixExercise extends Exercise {
             sizeM++;
         }
 
-        Matrix matrix = new Matrix(sizeM, sizeN);
-        matrix.setBody(body);
-        return matrix;
+        this.userMatrix = new Matrix(sizeM, sizeN);
+        userMatrix.setBody(body);
     }
 }

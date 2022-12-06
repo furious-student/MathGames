@@ -5,7 +5,7 @@ import java.util.Scanner;
 public class Main {
     public static void main(String[] args) {
         Player player = new Player("John");
-        Game game = new Game(player);
+        Game game = Game.getInstance(player);
 
         int option;
 

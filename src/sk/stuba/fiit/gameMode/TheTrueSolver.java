@@ -24,7 +24,6 @@ public class TheTrueSolver extends GameMode {
                         \t3 -> Linear Equations
                         \t4 -> Quadratic Equations
                         \t5 -> Geometry
-                        \t6 -> Complex Numbers
                         \t7 -> Matrices"""
         ); // Eclipse?
     }

@@ -1,12 +1,13 @@
 package sk.stuba.fiit.math.exercises.matrix;
 
 import sk.stuba.fiit.math.RandomNumber;
+import sk.stuba.fiit.math.exercises.IExercisable;
 
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Objects;
 
-public class Matrix {
+public class Matrix implements IExercisable {
     private final int MAX_LIMIT = 100;
     private final int MIN_LIMIT = -100;
     private int sizeM;
@@ -61,18 +62,6 @@ public class Matrix {
 
     }
 
-    public void generate() {
-        if (isEmpty()) {
-            for (int i = 0; i < this.sizeM; i++) {
-                for (int j = 0; j < sizeN; j++) {
-                    body.get(i).add(RandomNumber.generate(this.MIN_LIMIT, this.MAX_LIMIT));
-                }
-            }
-        } else {
-            regenerate();
-        }
-    }
-
     public void generateZeroMatrix() {
         if (isEmpty()) {
             for (int i = 0; i < this.sizeM; i++) {
@@ -102,26 +91,6 @@ public class Matrix {
             for (int j = 0; j < sizeN; j++) {
                 body.get(i).set(j,RandomNumber.generate(this.MIN_LIMIT, this.MAX_LIMIT));
             }
-        }
-    }
-
-    public void print() {
-        if (this.isEmpty()) {
-            return;
-        }
-        for (int i = 0; i < this.sizeM; i++) {
-            for (int j = 0; j < sizeN; j++) {
-                if (body.get(i).get(j) >= 0) {
-                    if (body.get(i).get(j) < 10) {
-                        System.out.print(" ");
-                    }
-                    System.out.print(" ");
-                } else if (body.get(i).get(j) > -10) {
-                    System.out.print(" ");
-                }
-                System.out.print(body.get(i).get(j) + " ");
-            }
-            System.out.println();
         }
     }
 
@@ -192,6 +161,39 @@ public class Matrix {
     }
 
     // ============================== OVERRIDDEN METHODS  ======================================
+    @Override
+    public void generate() {
+        if (isEmpty()) {
+            for (int i = 0; i < this.sizeM; i++) {
+                for (int j = 0; j < sizeN; j++) {
+                    body.get(i).add(RandomNumber.generate(this.MIN_LIMIT, this.MAX_LIMIT));
+                }
+            }
+        } else {
+            regenerate();
+        }
+    }
+
+    @Override
+    public void print() {
+        if (this.isEmpty()) {
+            return;
+        }
+        for (int i = 0; i < this.sizeM; i++) {
+            for (int j = 0; j < sizeN; j++) {
+                if (body.get(i).get(j) >= 0) {
+                    if (body.get(i).get(j) < 10) {
+                        System.out.print(" ");
+                    }
+                    System.out.print(" ");
+                } else if (body.get(i).get(j) > -10) {
+                    System.out.print(" ");
+                }
+                System.out.print(body.get(i).get(j) + " ");
+            }
+            System.out.println();
+        }
+    }
 
     @Override
     public boolean equals(Object o) {

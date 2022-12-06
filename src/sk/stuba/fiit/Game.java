@@ -9,6 +9,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class Game {
+    private static Game instance = null;
     private Player player;
     private final GameMode quickMathSolver = new QuickMathSolver();
     private final GameMode theTrueSolver = new TheTrueSolver();
@@ -16,11 +17,18 @@ public class Game {
     private List<GameMode> gameModes = new ArrayList<>();
     private GameMode currentGameMode;
 
-    public Game(Player player) {
+    private Game(Player player) {
         this.player = player;
         this.gameModes.add(this.quickMathSolver);
         this.gameModes.add(this.theTrueSolver);
         this.gameModes.add(this.lordOfMath);
+    }
+
+    public static Game getInstance(Player player) {
+        if(instance == null) {
+            instance = new Game(player);
+        }
+        return instance;
     }
 
     public GameMode getCurrentGameMode() {
