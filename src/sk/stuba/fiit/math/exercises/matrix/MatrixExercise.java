@@ -14,13 +14,20 @@ public class MatrixExercise extends Exercise {
     private Matrix userMatrix;
     // ============================= MATRICES =============================
     @Override
-    public void generateExercise() {
+    public boolean generateExercise(boolean printOptions) {
         int random = RandomNumber.generate(-1, 1);
         if (random < 0) {
             generateMatrixAddition();
         } else {
             generateMatrixMultiplication();
         }
+
+        return super.isCorrect();
+    }
+
+    @Override
+    public void printOptions() {
+
     }
 
     private void generateMatrixAddition() {
@@ -64,7 +71,7 @@ public class MatrixExercise extends Exercise {
         this.a.print();
         System.out.println("and matrix B =");
         this.b.print();
-        System.out.println("Find the product of these matrices (enter each row, numbers separated by space: ");
+        System.out.println("Find the product of these matrices (enter each row, numbers separated by space): ");
         getUserSolution();
 
         this.c = this.a.multiply(this.b);
@@ -82,6 +89,7 @@ public class MatrixExercise extends Exercise {
 
     @Override
     public boolean isSolutionCorrect() {
+        setCorrect(this.userMatrix.equals(this.c));
         return this.userMatrix.equals(this.c);
     }
 

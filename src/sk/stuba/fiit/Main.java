@@ -4,7 +4,7 @@ import java.util.Scanner;
 
 public class Main {
     public static void main(String[] args) {
-        Player player = new Player("John");
+        Player player = new Player();
         Game game = Game.getInstance(player);
 
         int option;
@@ -36,12 +36,12 @@ public class Main {
                             case 2 -> gameMode = "TheTrueSolver";
                             case 3 -> gameMode = "LordOfMath";
                             case 4 -> game.help();
+                            case -1 -> {}
                             default ->
                                     System.out.println("Option \"" + option + "\" is not recognized as a valid option");
                         }
                         if (gameMode != null) {
                             game.switchModes(gameMode);
-                            game.play();
                             game.start();
                             // playing game
                             game.end();
@@ -49,9 +49,10 @@ public class Main {
                         }
                     }
                     option = -1;
-                } default -> {
+                }
+                case -1 -> {}
+                default -> {
                     System.out.println("Option \"" + option + "\" is not recognized as a valid option");
-                    printMainMenu();
                 }
             }
         } while (option != 0);
@@ -77,11 +78,13 @@ public class Main {
     private static int getUserNumberInput() {
         Scanner scanner = new Scanner(System.in);
         int option = -1;
-        if (scanner.hasNextInt()) {
-            option = scanner.nextInt();
-        } else {
-            scanner.nextLine();
+        String input = scanner.nextLine();
+        try {
+            option = Integer.parseInt(input);
+        } catch (Exception e) {
+            System.out.println("Option \"" + input + "\" is not recognized as a valid input");
         }
+
         return option;
     }
 

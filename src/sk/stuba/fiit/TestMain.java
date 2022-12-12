@@ -73,22 +73,22 @@ public class TestMain {
         */
 
         Exercise exercise = new MatrixExercise();
-        exercise.generateExercise();
+        exercise.generateExercise(false);
 
         System.out.println();
 
         Exercise equation = new EquationExercise();
-        equation.generateExercise();
+        equation.generateExercise(false);
 
         System.out.println();
 
         Exercise algebra = new AlgebraicExercise();
-        algebra.generateExercise();
+        algebra.generateExercise(false);
 
         System.out.println();
 
         Exercise arithmetics = new ArithmeticExercise();
-        arithmetics.generateExercise();
+        arithmetics.generateExercise(false);
     }
 
 }

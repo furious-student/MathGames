@@ -12,21 +12,26 @@ public class EquationExercise extends Exercise {
     private QuadraticEquation quadraticEquation = null;
 
     @Override
-    public void generateExercise() {
+    public boolean generateExercise(boolean printOptions) {
         int decision = RandomNumber.generate(-1,1);
-        if (decision < 0) {
+        if (decision < 0 || printOptions) {
             this.linearEquation = new LinearEquation();
-            generateLinearEquationExercise();
+            generateLinearEquationExercise(printOptions);
         } else {
             this.quadraticEquation = new QuadraticEquation();
             generateQuadraticEquationExercise();
         }
+
+        return super.isCorrect();
     }
 
-    private void generateLinearEquationExercise() {
+    private void generateLinearEquationExercise(boolean printOptions) {
         System.out.println("Given the equation:");
         this.linearEquation.generate();
         this.linearEquation.print();
+        if (printOptions) {
+            printOptions();
+        }
         System.out.println("find the solution for x in whole numbers (input one whole number):");
         getUserSolution();
 
@@ -60,11 +65,25 @@ public class EquationExercise extends Exercise {
     }
 
     @Override
+    public void printOptions() {
+        int correct = RandomNumber.generate(1, 6);
+        for (int i = 65; i < 70; i++) {
+            if (i - 64 == correct) {
+                System.out.println("\t" + ((char) i) + ") " + this.linearEquation.getLinearSolution());
+            } else {
+                System.out.println("\t" + ((char) i) + ") " + RandomNumber.generate(-20, 21));
+            }
+        }
+    }
+
+    @Override
     public boolean isSolutionCorrect() {
         if (this.linearEquation != null) {
+            super.setCorrect(this.linearEquation.equals(this.userSolutions[0]));
             return this.linearEquation.equals(this.userSolutions[0]);
         }
 
+        super.setCorrect(this.quadraticEquation.equals(this.userSolutions));
         return this.quadraticEquation.equals(this.userSolutions);
     }
 

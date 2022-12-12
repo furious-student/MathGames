@@ -4,9 +4,11 @@ import sk.stuba.fiit.gameMode.GameMode;
 import sk.stuba.fiit.gameMode.LordOfMath;
 import sk.stuba.fiit.gameMode.QuickMathSolver;
 import sk.stuba.fiit.gameMode.TheTrueSolver;
+import sk.stuba.fiit.math.exercises.algebraAndArithmetics.Arithmetics;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Scanner;
 
 public class Game {
     private static Game instance = null;
@@ -40,30 +42,41 @@ public class Game {
         GameMode.printGameModes();
     }
 
-
-    public void play() {
-        currentGameMode.printGameModeMenu();
-    }
-
     public void start() {
+        currentGameMode.printGameModeMenu();
+        // game played here
+        Scanner scanner = new Scanner(System.in);
+        String[] s = scanner.nextLine().split(" ");
+        int numberOfQuestions = 0;
+        ArrayList<Integer> exerciseTypes = new ArrayList<>();
+        try {
+            for (int i = 0; i < s.length; i++) {
+                exerciseTypes.add(Integer.parseInt(s[i]));
+            }
+        } catch (Exception e) {
+            System.out.println("Invalid option(s)");
+            return;
+        }
         currentGameMode.startTime();
+        currentGameMode.play(exerciseTypes);
     }
 
     public void end() {
-        if (this.player.getHighScoreMode() == null || this.player.getHighScoreMode().getPoints() > this.currentGameMode.getPoints()) {
+        if (this.player.getHighScoreMode() == null || this.player.getHighScoreMode().getMaxPoints() < this.currentGameMode.getPoints()) {
             this.player.setHighScoreMode(this.currentGameMode);
         }
 
         if (this.currentGameMode.getPoints() > this.currentGameMode.getMaxPoints()) {
             this.currentGameMode.setMaxPoints(this.currentGameMode.getPoints());
         }
-        this.currentGameMode.clearStats();
+
         this.currentGameMode.stopTime();
         System.out.println("Game Over");
         System.out.println("Points acquired in " + this.currentGameMode.getName() + ": " + this.currentGameMode.getPoints());
-        System.out.println("Time played: " + + this.currentGameMode.getTime());
-        System.out.println("Highscore acquired in this mode: " + this.currentGameMode.getName() + ": " + this.currentGameMode.getPoints());
-        System.out.println("Overall highscore acquired in mode: " + this.player.getHighScoreMode().getName() + ": " + this.player.getHighScoreMode().getPoints());
+        printTime();
+        System.out.println("Highscore acquired in this mode: " + this.currentGameMode.getName() + ": " + this.currentGameMode.getMaxPoints());
+        System.out.println("Overall highscore acquired in mode: " + this.player.getHighScoreMode().getName() + ": " + this.player.getHighScoreMode().getMaxPoints());
+        this.currentGameMode.clearStats();
     }
     public void help() {
         GameMode.printHelp();
@@ -77,5 +90,10 @@ public class Game {
             }
         }
         this.currentGameMode = (index >= 0) ?  this.gameModes.get(index) : null;
+    }
+
+    private void printTime() {
+        int time = this.currentGameMode.getTime(); // time played in seconds
+        System.out.println("Time played: " + time / 60 + " minute(s), " + time % 60 + " second(s)");
     }
 }

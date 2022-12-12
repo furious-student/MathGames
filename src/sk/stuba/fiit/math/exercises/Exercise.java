@@ -1,13 +1,15 @@
 package sk.stuba.fiit.math.exercises;
 
-import sk.stuba.fiit.math.RandomNumber;
-
-import java.util.ArrayList;
-import java.util.List;
-import java.util.Scanner;
-
 public abstract class Exercise {
+    private boolean isCorrect;
 
+    public boolean isCorrect() {
+        return isCorrect;
+    }
+
+    public void setCorrect(boolean correct) {
+        this.isCorrect = correct;
+    }
 
     // ============================= UTILITY PRINT FUNCTIONS =============================
     public final void printKudos() {
@@ -18,7 +20,8 @@ public abstract class Exercise {
         System.out.println("Better luck next time! your solution was incorrect.");
     }
 
-    public abstract void generateExercise();
+    public abstract boolean generateExercise(boolean printOptions);
+    public abstract void printOptions();
     public abstract boolean isSolutionCorrect();
     public abstract void getUserSolution();
 }
