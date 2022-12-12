@@ -1,23 +1,29 @@
 package sk.stuba.fiit;
 
+import sk.stuba.fiit.utility.MainMenu;
+import sk.stuba.fiit.utility.Menu;
+
 import java.util.Scanner;
 
 public class Main {
     public static void main(String[] args) {
+
+        Menu menu = new MainMenu("null");
+        // Downcasting
+        MainMenu mainMenu = (MainMenu) menu;
         Player player = new Player();
         Game game = Game.getInstance(player);
 
         int option;
 
         do {
+            mainMenu.printMenu();
             printHeader(player);
             printMainMenu();
             option = getUserNumberInput();
 
             switch (option) {
-                case 0 -> {
-                    break;
-                }
+                case 0 -> {}
                 case 1 -> {
                     System.out.print("Enter new nickname: ");
                     player.setNickName(getUserStringInput());
@@ -45,6 +51,7 @@ public class Main {
                             game.start();
                             // playing game
                             game.end();
+                            gameMode = null;
                             System.out.println();
                         }
                     }
@@ -72,7 +79,7 @@ public class Main {
                         \t2 -> Math Formulas
                         \t3 -> Math Topics
                         \t4 -> Play Game"""
-        ); // Eclipse?
+        );
     }
 
     private static int getUserNumberInput() {

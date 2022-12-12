@@ -23,8 +23,6 @@ public class TheTrueSolver extends GameMode {
                 """
                         Welcome in the TheTrueSolver mode!
                         Choose topics to include in the game (enter numbers of topics you want to include separated by space):
-                        \t0 -> Go Back
-                        \t------------------
                         \t1 -> Arithmetics 
                         \t2 -> Algebra
                         \t3 -> Linear and Quadratic Equations

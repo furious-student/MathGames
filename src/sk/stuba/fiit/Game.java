@@ -6,24 +6,25 @@ import sk.stuba.fiit.gameMode.QuickMathSolver;
 import sk.stuba.fiit.gameMode.TheTrueSolver;
 import sk.stuba.fiit.math.exercises.algebraAndArithmetics.Arithmetics;
 
+import java.text.DecimalFormat;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Scanner;
 
 public class Game {
     private static Game instance = null;
-    private Player player;
-    private final GameMode quickMathSolver = new QuickMathSolver();
-    private final GameMode theTrueSolver = new TheTrueSolver();
-    private final GameMode lordOfMath = new LordOfMath();
-    private List<GameMode> gameModes = new ArrayList<>();
+    private final Player player;
+    private final List<GameMode> gameModes = new ArrayList<>();
     private GameMode currentGameMode;
 
     private Game(Player player) {
         this.player = player;
-        this.gameModes.add(this.quickMathSolver);
-        this.gameModes.add(this.theTrueSolver);
-        this.gameModes.add(this.lordOfMath);
+        GameMode quickMathSolver = new QuickMathSolver();
+        this.gameModes.add(quickMathSolver);
+        GameMode theTrueSolver = new TheTrueSolver();
+        this.gameModes.add(theTrueSolver);
+        GameMode lordOfMath = new LordOfMath();
+        this.gameModes.add(lordOfMath);
     }
 
     public static Game getInstance(Player player) {
@@ -72,10 +73,11 @@ public class Game {
 
         this.currentGameMode.stopTime();
         System.out.println("Game Over");
-        System.out.println("Points acquired in " + this.currentGameMode.getName() + ": " + this.currentGameMode.getPoints());
+        DecimalFormat df = new DecimalFormat("#.##");
+        System.out.println("Points acquired in " + this.currentGameMode.getName() + ": " + df.format(this.currentGameMode.getPoints()));
         printTime();
-        System.out.println("Highscore acquired in this mode: " + this.currentGameMode.getName() + ": " + this.currentGameMode.getMaxPoints());
-        System.out.println("Overall highscore acquired in mode: " + this.player.getHighScoreMode().getName() + ": " + this.player.getHighScoreMode().getMaxPoints());
+        System.out.println("Highscore acquired in this mode: " + this.currentGameMode.getName() + ": " + df.format(this.currentGameMode.getMaxPoints()));
+        System.out.println("Overall highscore acquired in mode: " + this.player.getHighScoreMode().getName() + ": " + df.format(this.player.getHighScoreMode().getMaxPoints()));
         this.currentGameMode.clearStats();
     }
     public void help() {

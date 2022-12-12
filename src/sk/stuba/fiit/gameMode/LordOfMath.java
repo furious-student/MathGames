@@ -21,8 +21,6 @@ public class LordOfMath extends GameMode {
                 """
                         Welcome in the LordOfMathMode mode!
                         Choose topics to include in the game (enter numbers of topics you want to include separated by space):
-                        \t0 -> Go Back
-                        \t------------------
                         \t1 -> Arithmetics
                         \t2 -> Algebra
                         \t3 -> Linear Equations"""
