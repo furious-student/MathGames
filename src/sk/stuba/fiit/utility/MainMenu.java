@@ -7,7 +7,6 @@ public class MainMenu extends Menu{
 
     @Override
     public void printMenu() {
-        super.printMenu();
         System.out.println("Welcome in this wonderful math world traveler!");
     }
 }

@@ -1,5 +1,7 @@
 package sk.stuba.fiit;
 
+import sk.stuba.fiit.math.theory.EquationFormula;
+import sk.stuba.fiit.math.theory.MatrixFormula;
 import sk.stuba.fiit.utility.MainMenu;
 import sk.stuba.fiit.utility.Menu;
 
@@ -8,16 +10,19 @@ import java.util.Scanner;
 public class Main {
     public static void main(String[] args) {
 
-        Menu menu = new MainMenu("null");
+        Menu menu = new MainMenu(null);
+        MainMenu mainMenu = null;
         // Downcasting
-        MainMenu mainMenu = (MainMenu) menu;
+        if (menu instanceof MainMenu) {
+            mainMenu = (MainMenu) menu;
+        }
+
         Player player = new Player();
         Game game = Game.getInstance(player);
 
         int option;
-
+        mainMenu.printMenu();
         do {
-            mainMenu.printMenu();
             printHeader(player);
             printMainMenu();
             option = getUserNumberInput();
@@ -28,8 +33,13 @@ public class Main {
                     System.out.print("Enter new nickname: ");
                     player.setNickName(getUserStringInput());
                 }
-                case 2 -> System.out.println("MathFormulas");
-                case 3 -> System.out.println("MathTopics");
+                case 2 -> {
+                    EquationFormula mathFormula = new EquationFormula();
+                    mathFormula.printFormula();
+                    MatrixFormula matrixFormula = new MatrixFormula();
+                    matrixFormula.printFormula();
+                }
+                case 3 -> System.out.println("MathTopics included in this application: Arithmetics, Algebra, Linear equations, Quadratic equations, Matrices");
                 case 4 -> {
                     option = -1;
                     String gameMode = null;

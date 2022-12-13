@@ -1,17 +1,21 @@
 package sk.stuba.fiit.gameMode;
 
-import sk.stuba.fiit.gameMode.GameMode;
 import sk.stuba.fiit.math.RandomNumber;
 import sk.stuba.fiit.math.exercises.algebraAndArithmetics.AlgebraicExercise;
 import sk.stuba.fiit.math.exercises.algebraAndArithmetics.ArithmeticExercise;
 import sk.stuba.fiit.math.exercises.equation.EquationExercise;
 
 import java.util.ArrayList;
-import java.util.Scanner;
 
 public class LordOfMath extends GameMode {
     public LordOfMath() {
         super("LordOfMath");
+    }
+
+
+
+    public void addPoints() {
+        super.addPoints(1);
     }
 
     @Override
@@ -27,10 +31,6 @@ public class LordOfMath extends GameMode {
         ); // Eclipse?
     }
 
-    public void addPoints() {
-        super.addPoints(1);
-    }
-
     @Override
     public void play(ArrayList<Integer> typeOfExercises) {
         for (int i = 0; i < typeOfExercises.size(); i++) {
@@ -40,18 +40,11 @@ public class LordOfMath extends GameMode {
             }
 
             switch (typeOfExercises.get(i)) {
-                case 1 -> {
-                    addExercise(new ArithmeticExercise());
-                }
-                case 2 -> {
-                    addExercise(new AlgebraicExercise());
-                }
-                case 3 -> {
-                    addExercise(new EquationExercise());
-                }
+                case 1 -> addExercise(new ArithmeticExercise());
+                case 2 -> addExercise(new AlgebraicExercise());
+                case 3 -> addExercise(new EquationExercise());
             }
         }
-
         int randomExercisePick;
         do {
             randomExercisePick = RandomNumber.generate(0, typeOfExercises.size());
